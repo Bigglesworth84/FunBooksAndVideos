@@ -6,6 +6,7 @@ using PurchaseOrderService.Infrastructure;
 using PurchaseOrderService.Services;
 using PurchaseOrderService.Services.Interfaces;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +45,13 @@ builder.Services.AddApiVersioning(options =>
 });
 
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Import XML comments
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

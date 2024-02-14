@@ -10,6 +10,7 @@ namespace PurchaseOrderService.Dtos
         /// <summary>
         /// The purchase order identifier.
         /// </summary>
+        /// <example>123456</example>
         [JsonPropertyName("id")]
         [JsonRequired]
         public long Id { get; set; }
@@ -17,6 +18,7 @@ namespace PurchaseOrderService.Dtos
         /// <summary>
         /// The purchase order total.
         /// </summary>
+        /// <example>89.99</example>
         [JsonPropertyName("total")]
         [JsonRequired]
         public decimal TotalPrice { get; set; }
@@ -24,6 +26,7 @@ namespace PurchaseOrderService.Dtos
         /// <summary>
         /// The customer identifier.
         /// </summary>
+        /// <example>654321</example>
         [JsonPropertyName("customerId")]
         [JsonRequired]
         public long CustomerId { get; set; }
