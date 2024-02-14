@@ -7,6 +7,9 @@ using PurchaseOrderService.Models;
 
 namespace PurchaseOrderService.Controllers
 {
+    /// <summary>
+    /// The purchase order controller.
+    /// </summary>
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
@@ -23,7 +26,15 @@ namespace PurchaseOrderService.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Submit a purchase order for processing.
+        /// </summary>
+        /// <param name="orderDto">The purchase order.</param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public IActionResult CreateOrder([FromBody] PurchaseOrderCreateDto orderDto)
         {
             if (orderDto == null)
